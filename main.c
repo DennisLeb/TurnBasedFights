@@ -34,7 +34,7 @@
 FILE* fptr;
 
 void getEnemy(monster *pEnemyStats);
-int combatRoutine(player *pPlayerStats, monster enemyStats);			// playerStats wird hier global verändert, daher pointer. enemyStats nicht, daher kein pointer. Entweder enemy stirbt oder Game Over.
+int combatRoutine(player *pPlayerStats, monster enemyStats);							// playerStats wird hier global verändert, daher pointer. enemyStats nicht, daher kein pointer. Entweder enemy stirbt oder Game Over.
 int playerAction(int combatDecision, player **dpPlayerStats, monster *pEnemyStats);		// enemyStats wird in Subfunktion verändert, dann zurück in combatRoutine() geprüft, daher hier pointer.
 void enemyAction(player **dpPlayerStats, monster *pEnemyStats);
 void saveKills(int enemyTypeSlain[]);
@@ -71,7 +71,7 @@ int main(void) {
 		scanf_s(" %c", &ans, (unsigned int)sizeof(ans));
 		
 		if (toupper(ans) != 'Y') {
-			puts("\nYou put your weapon down, as you ponder blood spilled. The only thing that matters is your survival, you tell yourself.");
+			puts("\nYou put your weapon down, as you ponder spilled blood. The only thing that matters is your survival, you tell yourself.");
 			break;
 		}
 
@@ -136,13 +136,21 @@ int combatRoutine(player *pPlayerStats, monster enemyStats) {
 		puts("2. Defend");
 		puts("3. Flee");
 		printf("Your decision? ");
-		scanf_s(" %d", &playerDecision);
+		int ans = scanf_s(" %d", &playerDecision);
+
+		if (ans != 1) {	// falscher Datentyp
+			// buffer leeren
+			while (getchar() != '\n') {}
+
+			puts("\nInvalid data input! Try again!\n");
+			continue;
+		}
 
 		if (playerDecision >= 1 && playerDecision <= 3) {
 			playerFlee = playerAction(playerDecision, dpPlayerStats, pEnemyStats);
 		}
-		else {
-			puts("Invalid input! Try again!\n");
+		else {	// falscher int input
+			puts("\nInvalid input! Try again!\n");
 			continue;
 		}
 
