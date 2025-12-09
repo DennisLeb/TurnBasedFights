@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="TurnBasedFights.vcxproj" Id="1688ad5d-580b-4397-9941-3ef4d2a89167" />
+</Solution>

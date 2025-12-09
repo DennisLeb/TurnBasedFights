@@ -1,0 +1,6 @@
+***		Monster Kills		***
+
+Goblin Kills:		4
+Crazed Magician Kills:	10
+-------------------------------------------
+Total Kills:		14
